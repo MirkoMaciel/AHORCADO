@@ -13,6 +13,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `correo`, `contraseña`) VALUES
 (1, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
 
+ALTER TABLE usuario ADD CONSTRAINT unique_nombreUsuario UNIQUE (nombreUsuario);
 
 -- TABLA PUNTAJES
 

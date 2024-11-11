@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/js/script.js"></script>
     <title>INICIO SESION</title>
 </head>
 
@@ -12,16 +13,16 @@
     <div>BIENVENIO AL AHORCADO</div>
 
     <div>
-        <form action="" method="post" id="formInicio">
+        <form action="../models/juego.php" method="POST" id="formInicio">
             <fieldset>
                 <legend>INICIO SESION</legend>
 
-                <input type="text" id="idUsuario">
-                <input type="password" id="passUsuario">
+                <input type="text" id="idUsuario" name="nombreUsuario" autocomplete="username" required>
+                <input type="password" id="passUsuario" name="passUsuario" autocomplete="current-password">
 
-                <button type="button" value="ENVIAR" id="btnEnviar">ENVIAR</button>
+                <button type="submit">ENVIAR</button>
 
-                <p>¿No tienes una cuenta? <a href="../public/registro.html">REGISTRATE</a></p>
+                <p>¿No tienes una cuenta? <a href="registro.html">REGISTRATE</a></p>
             </fieldset>
         </form>
     </div>
@@ -30,6 +31,6 @@
     
     </body>
 
-    <script src="../assets/js/script.js" defer></script>
+
 
 </html>

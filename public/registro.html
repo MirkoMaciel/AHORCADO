@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REGISTRO</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../assets/js/registro.js" defer></script>
 </head>
 
 <body>
@@ -11,19 +13,26 @@
     <div>REGISTRESE CON NOSOTROS</div>
 
     <div>
-        <form action="" method="post" id="formInicio">
+        <form action="" method="POST" id="formInicio">
             <fieldset>
                 <legend>REGISTRO</legend>
 
-                <input type="text" id="idUsuario">
-                <input type="email" id="idEmail">
-                <input type="password" id="passUsuario">
+                <label for="registroUsuario">Nombre de usuario: </label>
+                <input type="text" id="idUsuario" name="registroUsuario"  placeholder="Puede contener letras/numeros">
+                <br>
+                <label for="correo">Email: </label>
+                <input type="email" id="idEmail" name="correo" autocomplete="username">
+                <br>
+                <label for="pass">Contraseña: </label>
+                <input type="password" id="passUsuario" name="pass" autocomplete="current-password">
 
-                <button type="submit" value="ENVIAR">REGISTRARSE</button>
+                <button type="submit" name="enviar" value="ENVIAR">REGISTRARSE</button>
 
             </fieldset>
         </form>
     </div>
+
+    <div id="resultado"></div>
 
     <footer>MIRKO MACIEL 2024 Copyright</footer>
     
