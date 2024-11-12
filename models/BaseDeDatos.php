@@ -44,6 +44,17 @@ class BaseDeDatos
         return null; // Sin resultados
     }
 
+    public function obtenerResultados($resultado)
+    {
+        $objetos = [];
+
+        while ($objeto = $resultado->fetch_object()) {
+            $objetos[] = $objeto;
+        }
+
+        return $objetos;
+    }
+
     public function cerrarConexion()
     {
         $this->conexion->close();
