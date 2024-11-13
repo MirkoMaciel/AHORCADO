@@ -1,39 +1,40 @@
 <?php
 
-require_once 'UsuarioClass.php';
+require_once "../models/UsuarioClass.php";
+require_once "../models/BaseDeDatos.php";
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    if (isset($_POST['nombreUsuario']) && isset($_POST['passUsuario'])) {
+    //Instancia de objetos
+    $bd = new BaseDeDatos('localhost', 'root', '', 'ahorcado');
+    $user = new UsuarioClass();
 
-        //Isntanciar el objeto Usuario
-        $usuario = new UsuarioClass();
+    //Obtengo lo digitado por el usuario
+    $nombre = $_POST['registroUsuario'];
+    $correo = $_POST['correo'];
+    $contra = $_POST['pass'];
+    $contraEncriptada = sha1($contra);
 
-        //Obtener los valores digitados
-        $nombreUser = $_POST['nombreUsuario'];
-        $pass = $_POST['passUsuario'];
+    //echo $nombre;echo$correo;echo$contra;
 
-        // Validar que los campos no estén vacíos
-        if (empty($nombreUser) || empty($pass)) {
-            echo "Por favor, completa todos los campos.";
-            exit();
-        }
+    //Verifico que no existe un usuario dentro de la BD
+    $usuarioExistente = $user->getUsuarioBD($nombre);
 
-        $result = $usuario->getUsuarioBD($nombreUser, $pass);
-
-        if ($result) {
-                // La contraseña es correcta
-                echo "¡Bienvenido, " . htmlspecialchars($result['nombreUsuario']) . "!";
-                // Aquí puedes redirigir al usuario a otra página (por ejemplo, al inicio de sesión)
-                header("Location: ../../../public/vistaJuego.php");
-                exit();
-            } else {
-                // La contraseña es incorrecta
-                echo "<div class='error'>Contraseña incorrecta.</div>";
-            }
-        } else {
-            // El usuario no existe
-            echo "<div class='error'>Usuario no encontrado.</div>";
-        }
+    if ($usuarioExistente) {
+        //Informo al usuario
+        echo "<script>alert('El usuario ya existe');
+                window.location = '/AHORCADO/public/index.html';</script>";
+    } else {
+        //Agrego el usuario a la base de datos
+        $user->registrarJugador($nombre, $correo, $contraEncriptada);
+        $idUserNuevo = $user->getIdUsuarioBd($nombre);
+        $user->registrarPuntuacion($idUserNuevo['idUsuario']);
+        echo "<script>alert('Usuario registrado con exito');
+        window.location = '/AHORCADO/public/index.html';</script>";
     }
+
+}
+
+
 ?>

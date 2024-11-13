@@ -1,4 +1,11 @@
-<?php session_start()?>
+<?php session_start();
+
+echo $_SESSION['HOLA'];
+echo $_SESSION['nombre'];
+echo $_SESSION['puntaje'];
+echo $_SESSION['cantidadPartidas'];
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 

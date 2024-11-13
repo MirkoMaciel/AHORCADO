@@ -1,43 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>REGISTRO</title>
-        <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="../assets/js/registro.js" defer></script>
-    </head>
 
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRO</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../assets/js/registro.js" defer></script>
+</head>
 
-        <div>REGISTRESE CON NOSOTROS</div>
+<body>
 
-        <div>
+    <div>REGISTRESE CON NOSOTROS</div>
 
-                <fieldset>
-                    <legend>REGISTRO</legend>
+    <div>
+        <form action="../models/procesarUsuario.php" method="POST">
+            <fieldset>
+                <legend>REGISTRO</legend>
 
-                    <label for="registroUsuario">Nombre de usuario: </label>
-                    <input type="text" id="idUsuario" name="registroUsuario"
-                        placeholder="Puede contener letras/numeros">
-                    <br>
-                    <label for="correo">Email: </label>
-                    <input type="email" id="idEmail" name="correo"
-                        autocomplete="username">
-                    <br>
-                    <label for="pass">Contraseña: </label>
-                    <input type="password" id="passUsuario" name="pass"
-                        autocomplete="current-password">
-                    <br>
-                    <button type="submit" value="registrarse" id="registro" name="registrar">REGISTRARSE</button>
+                <label for="registroUsuario">Nombre de usuario: </label>
+                <input type="text" id="idUsuario" name="registroUsuario">
+                <br>
+                <label for="correo">Email: </label>
+                <input type="email" id="idEmail" name="correo"
+                    autocomplete="username">
+                <br>
+                <label for="pass">Contraseña: </label>
+                <input type="password" id="passUsuario" name="pass"
+                    autocomplete="current-password">
+                <br>
+                <button type="submit" value="registrarse" id="" name="registrar">REGISTRARSE</button>
 
-                </fieldset>
+            </fieldset>
+        </form>
+    </div>
 
-        </div>
+    <footer>MIRKO MACIEL 2024 Copyright</footer>
 
-        <div id="resultado"></div>
-
-        <footer>MIRKO MACIEL 2024 Copyright</footer>
-
-    </body>
+</body>

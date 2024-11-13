@@ -39,7 +39,7 @@ class BaseDeDatos
     public function obtenerResultado($resultado)
     {
         if ($resultado->num_rows > 0) { //Define un único objeto si la consulta es exitosa
-            return $resultado->fetch_object(); // Objeto único
+            return $resultado->fetch_assoc(); // Arreglo único
         }
         return null; // Sin resultados
     }
