@@ -6,6 +6,8 @@ if (isset($_POST['dificultad']) && isset($_POST['tiempo'])) {
     // Guardar los datos en las variables de sesión
     $_SESSION['dificultad'] = $_POST['dificultad'];
     $_SESSION['tiempo'] = $_POST['tiempo'];
+    $_SESSION['aciertos'] = 0;
+    $_SESSION['pistas'] = 0;
 
     // Redirigir a la vista del juego
     header("Location: ../../../../AHORCADO/public/vistaJuego.php");

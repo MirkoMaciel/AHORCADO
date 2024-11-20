@@ -86,4 +86,9 @@ class UsuarioClass
         $result = $bd->obtenerResultado($bd->ejecutarConsulta($query));
         return $result;
     }
+
+    //Trae la información más relevante sobre el juego al usuario
+    public function bajarInformacionUsuuario (){
+
+    }
 }

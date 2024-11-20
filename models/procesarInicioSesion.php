@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $puntajeUsuario = $user->getPuntuacionUsuario($usuario['idUsuario']);
             
             $_SESSION['puntaje'] = $puntajeUsuario['puntaje'];
-            $_SESSION['cantidadPartidas'] =  $puntaje['cantidadPartidas'];
+            $_SESSION['cantidadPartidas'] =  $puntajeUsuario['cantidadPartidas'];
             
             echo "<script>alert('El usuario existe');window.location='../public/vistaConfigJuego.php';</script>";
         }else {

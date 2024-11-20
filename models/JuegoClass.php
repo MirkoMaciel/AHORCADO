@@ -20,6 +20,17 @@ class JuegoClass {
         return $resultado;
     }
 
+    public function seleccionarPalabra ($objt){
+        foreach ($objt as $row) {
+            $palabras[] = (array) $row; // Convierte cada stdClass a un arreglo
+        }
+
+        $indiceAleatorio = array_rand($palabras); // Selecciona un índice aleatorio
+        $palabraAleatoria = $palabras[$indiceAleatorio]['palabra']; // Obtiene la palabra
+
+        return $palabraAleatoria;
+    }
+
 
 }
 
