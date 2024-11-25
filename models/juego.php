@@ -1,12 +1,18 @@
 <?php
 session_start();
 header('Content-Type: application/json');
+require_once "UsuarioClass.php";
+$usuario = new UsuarioClass();
+$nickUsuario = $_SESSION['nickUsuario'];
+$infoJugador = $usuario->bajarInformacionUsuario($nickUsuario);
+
 $letra = strtolower($_POST['letra']); // Letra enviada desde AJAX
 $palabra = strtolower($_SESSION['palabraAleatoria']);
 $oculto = $_SESSION['palabraOculta'];
 $pistas = $_SESSION['pistas'];
 $aciertos = $_SESSION['aciertos'];
 $letrasIntentadas = $_SESSION['letrasIntentadas'];
+$dificultad = $_SESSION['dificultad'];
 
 
 //Guardo la letra que se ingreso
@@ -18,7 +24,7 @@ if (!empty($letra)){
 if (strpos($palabra, $letra) !== false) {
     // Si la letra está en la palabra, reemplazar los asteriscos
     for ($i = 0; $i < strlen($palabra); $i++) {
-        if ($palabra[$i] === $letra) {
+        if ($palabra[$i] === $letra && $oculto[$i] == '*') {
             $oculto[$i] = $letra;
         }
     }
@@ -41,9 +47,8 @@ if (strpos($palabra, $letra) !== false) {
         }
     }
     
-    if (!empty($_SESSION['letraPista'])){
         $letraPista = $_SESSION['letraPista'];
-    }
+    
 
     $mensaje = "La letra '$letra' no está en la palabra. La pista descubierta es la letra: '$letraPista'";
 }
@@ -51,15 +56,42 @@ if (strpos($palabra, $letra) !== false) {
 $terminado = false;
 
 
-
 if ($_SESSION['palabraOculta'] === $palabra && $_SESSION['pistas'] < $_SESSION['aciertos'] ) {
     $mensaje = "¡Felicidades! Has adivinado la palabra: $palabra";
     $terminado = true;
+    if ($terminado){
+        switch ($dificultad) {
+            case 1:
+                //La sesión no se modifica
+                break;
+            case 2:
+                // DIFICULTAD MEDIA
+                $aciertos = $_SESSION['aciertos'];
+                $aciertos = $aciertos * 2;
+                $_SESSION['aciertos'] = $aciertos;
+                $usuario->incrementarPuntosJugador($infoJugador['idUsuario'], $aciertos);
+                break;
+                case 3:
+                    // DIFICULTAD ALTA
+                    $aciertos = $_SESSION['aciertos'];
+                    $aciertos = $aciertos * 3;
+                    $_SESSION['aciertos'] = $aciertos;
+                    $usuario->incrementarPuntosJugador($infoJugador['idUsuario'], $aciertos);
+                break;
+            default:
+                // Código a ejecutar si ninguno de los casos anteriores coincide
+                echo "error de seleccion de dificultad";
+                break;
+        }
+    }
+    
 } else if ($_SESSION['palabraOculta'] === $palabra && $_SESSION['aciertos'] < $_SESSION['pistas'] ) { //Recordartorio cambiar la condición
     $mensaje = "Has perdido. La palabra era: $palabra";
     $terminado = true;
+} else if ($_SESSION['palabraOculta'] === $palabra && $_SESSION['aciertos'] == $_SESSION['pistas']){
+    $mensaje = "ES UN EMPATE. La palabra era: $palabra";
+    $terminado = true;
 }
-
 
 
 // Respuesta JSON

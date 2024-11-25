@@ -88,7 +88,29 @@ class UsuarioClass
     }
 
     //Trae la información más relevante sobre el juego al usuario
-    public function bajarInformacionUsuuario (){
+    public function bajarInformacionUsuario ($nombreUsuario){
+        $bd = new BaseDeDatos('localhost', 'root', '', 'ahorcado');
+        $query = "SELECT DISTINCT u.idUsuario, u.nombreUsuario, p.puntaje, p.cantidadPartidas FROM usuario u JOIN puntajes p ON u.idUsuario = p.idUsuario WHERE u.nombreUsuario = '$nombreUsuario'";
+        $result = $bd->obtenerResultado($bd->ejecutarConsulta($query));
+        return $result;
+    }
 
+    public function bajarTopJugadores (){
+        $bd = new BaseDeDatos('localhost', 'root', '', 'ahorcado');
+        $query = "SELECT u.nombreUsuario , p.puntaje , p.cantidadPartidas FROM usuario u JOIN puntajes p ON u.idUsuario = p.idUsuario ORDER BY p.puntaje DESC LIMIT 10";
+        $result = $bd->obtenerResultados($bd->ejecutarConsulta($query));
+        return $result;
+    }
+
+    public function incrementarCantidadPartidas($idUsuario){
+        $bd = new BaseDeDatos('localhost', 'root', '', 'ahorcado');
+        $query = "UPDATE puntajes SET cantidadPartidas = cantidadPartidas + 1 WHERE idUsuario = '$idUsuario'";
+        $bd->ejecutarConsulta($query);
+    }
+
+    public function incrementarPuntosJugador($idUsuario, $puntaje){
+        $bd = new BaseDeDatos('localhost', 'root', '', 'ahorcado');
+        $query = "UPDATE puntajes p SET puntaje = puntaje + '$puntaje' WHERE idUsuario = '$idUsuario'";
+        $bd->ejecutarConsulta($query);
     }
 }

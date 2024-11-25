@@ -2,6 +2,8 @@
 session_start();
 
 require_once '../models/JuegoClass.php';
+require_once "../models/UsuarioClass.php";
+
 
 // Verificar que los datos estén en la sesión
 if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
@@ -15,6 +17,12 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
 
     //Si no existe la  sessión inicio el juego
     if (!isset($_SESSION['palabraAleatoria'])) {
+
+        $user = new UsuarioClass();
+        $nickUsuario = $_SESSION['nickUsuario'];
+        $infoJugador = $user->bajarInformacionUsuario($nickUsuario);
+        $user->incrementarCantidadPartidas($infoJugador['idUsuario']);
+        
         //Realizar consulta BD
         $juego = new JuegoClass();
         $objt = $juego->buscarPalabrasBD($dificultad);
@@ -46,6 +54,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
     <title>Vista del Juego</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../AHORCADO/assets/js/script.js" defer></script>
+    <script src="../../AHORCADO/assets/js/contador.js" defer></script>
     <style>
         /* Estilo general del contador */
         #contador {
@@ -130,8 +139,8 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
 
         <span id="fecha"></span>
 
-        <div id="contador">
-            <div id="divMinutos">
+        <div id="contador" style="display: none">
+            <div id="divMinutos" >
                 <p id="contMinutos">00</p>
                 <p id="minutos">MINUTOS</p>
             </div>
@@ -202,7 +211,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
         </form>
     </dialog>
 
-
+    
 
 
 
