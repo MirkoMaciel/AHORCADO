@@ -1,6 +1,6 @@
 <?php session_start();
 
-//echo $_SESSION['HOLA'];
+
 echo $_SESSION['nombre'];
 echo $_SESSION['puntaje'];
 echo $_SESSION['cantidadPartidas'];
@@ -10,14 +10,18 @@ echo $_SESSION['cantidadPartidas'];
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">  
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../assets/js/configJuego.js" defer></script>
     <title>Inicio de Partida - Juego de Palabras</title>
 </head>
 
 <body>
+
+    <div>
+        <p>Bienvenido <?php echo $_SESSION['nickUsuario'] ?></p>
+    </div>
+
 
     <div class="container">
         <h1>Configuración de partida</h1>
@@ -32,9 +36,9 @@ echo $_SESSION['cantidadPartidas'];
 
             <label>Selecciona el tipo de partida:</label>
             <label for="conTiempo">Con tiempo</label>
-            <input type="radio" id="conTiempo" name="tiempo" value="CON TIEMPO">
+            <input type="radio" id="conTiempo" name="tiempo" value="1">
             <label for="sinTiempo">Sin tiempo</label>
-            <input type="radio" id="sinTiempo" name="tiempo" value="SIN TIEMPO">
+            <input type="radio" id="sinTiempo" name="tiempo" value="0">
 
             <button type="submit" class="btn">Iniciar partida</button>
         </form>
@@ -42,7 +46,7 @@ echo $_SESSION['cantidadPartidas'];
         <div class="result" id="result"></div>
 
         <!-- Botón para salir y volver al índice -->
-        <button class="exit-btn" onclick="window.location.href='index.html';">Volver al índice</button>
+        <button class="exit-btn" onclick="window.location.href='http://localhost/AHORCADO/models/logout.php';">Cerrar sesión</button>
     </div>
     </div>
 

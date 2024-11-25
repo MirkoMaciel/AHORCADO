@@ -8,6 +8,7 @@ if (isset($_POST['dificultad']) && isset($_POST['tiempo'])) {
     $_SESSION['tiempo'] = $_POST['tiempo'];
     $_SESSION['aciertos'] = 0;
     $_SESSION['pistas'] = 0;
+    $_SESSION['letrasIntentadas'] = [];
 
     // Redirigir a la vista del juego
     header("Location: ../../../../AHORCADO/public/vistaJuego.php");
@@ -18,4 +19,6 @@ if (isset($_POST['dificultad']) && isset($_POST['tiempo'])) {
     header("Location:  ../../../AHORCADO/public/vistaConfigJuego.php");
     exit();
 }
+
+
 ?>

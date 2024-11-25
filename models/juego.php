@@ -6,6 +6,14 @@ $palabra = strtolower($_SESSION['palabraAleatoria']);
 $oculto = $_SESSION['palabraOculta'];
 $pistas = $_SESSION['pistas'];
 $aciertos = $_SESSION['aciertos'];
+$letrasIntentadas = $_SESSION['letrasIntentadas'];
+
+
+//Guardo la letra que se ingreso
+if (!empty($letra)){
+    array_push($letrasIntentadas, $letra);
+    $_SESSION['letrasIntentadas'] = $letrasIntentadas;
+}
 
 if (strpos($palabra, $letra) !== false) {
     // Si la letra está en la palabra, reemplazar los asteriscos
@@ -22,11 +30,29 @@ if (strpos($palabra, $letra) !== false) {
     $pistas++;
     $_SESSION['pistas'] = $pistas;
 
-    $mensaje = "La letra '$letra' no está en la palabra.";
+    // Buscar el primer asterisco en la palabra oculta y reemplazarlo con la letra de la palabra correcta en esa posición
+    for ($i = 0; $i < strlen($oculto); $i++) {
+        if ($oculto[$i] === '*') {
+            // Reemplazar el primer asterisco con la letra correspondiente de la palabra correcta
+            $_SESSION['letraPista'] = $palabra[$i];
+            $oculto[$i] = $_SESSION['letraPista'];  // Tomamos la letra correcta de la palabra original
+            $_SESSION['palabraOculta'] = $oculto;
+            break;  // Solo reemplazamos el primer asterisco encontrado
+        }
+    }
+    
+    if (!empty($_SESSION['letraPista'])){
+        $letraPista = $_SESSION['letraPista'];
+    }
+
+    $mensaje = "La letra '$letra' no está en la palabra. La pista descubierta es la letra: '$letraPista'";
 }
 
 $terminado = false;
-if ($_SESSION['palabraOculta'] === $palabra) {
+
+
+
+if ($_SESSION['palabraOculta'] === $palabra && $_SESSION['pistas'] < $_SESSION['aciertos'] ) {
     $mensaje = "¡Felicidades! Has adivinado la palabra: $palabra";
     $terminado = true;
 } else if ($_SESSION['palabraOculta'] === $palabra && $_SESSION['aciertos'] < $_SESSION['pistas'] ) { //Recordartorio cambiar la condición
@@ -34,12 +60,15 @@ if ($_SESSION['palabraOculta'] === $palabra) {
     $terminado = true;
 }
 
+
+
 // Respuesta JSON
 echo json_encode([
     "success" => true,
     "palabra" => $_SESSION['palabraOculta'],
     "aciertos" => $_SESSION['aciertos'],
     "pistas" => $_SESSION['pistas'],
+    "letrasIntentadas" => $_SESSION['letrasIntentadas'],
     "mensaje" => $mensaje,
     "terminado" => $terminado,
 ]);

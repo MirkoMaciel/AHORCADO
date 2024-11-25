@@ -14,6 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         //Instanciar objetos
         $user = new UsuarioClass();
 
+        //Guardo el nick de usuario
+        $_SESSION['nickUsuario'] = $_POST['nombreUsuario'];
+
         //Obtener los datos del formulario
         $nombre = $_POST['nombreUsuario'];
         $pass = $_POST['passUsuario'];
