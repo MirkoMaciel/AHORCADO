@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REGISTRO</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="../assets/js/registro.js" defer></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>REGISTRO</title>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <script src="../assets/js/registro.js" defer></script>
+    </head>
 
-<body>
+    <body>
 
-    <div>REGISTRESE CON NOSOTROS</div>
+        <h1>REGISTRESE CON NOSOTROS</h1>
 
-    <div>
-        <form action="../models/procesarUsuario.php" method="POST">
-            <fieldset>
-                <legend>REGISTRO</legend>
+        <div id="contenedorImg"><img src="../assets/img/logo.png"
+                alt="logounsjb.jhpg"></div>
 
-                <label for="registroUsuario">Nombre de usuario: </label>
-                <input type="text" id="idUsuario" name="registroUsuario">
-                <br>
-                <label for="correo">Email: </label>
-                <input type="email" id="idEmail" name="correo"
-                    autocomplete="username">
-                <br>
-                <label for="pass">Contraseña: </label>
-                <input type="password" id="passUsuario" name="pass"
-                    autocomplete="current-password">
-                <br>
-                <button type="submit" value="registrarse" id="" name="registrar">REGISTRARSE</button>
+        <div class="container">
+            <form action="../models/procesarUsuario.php" method="POST">
+                <fieldset>
+                    <legend>REGISTRO</legend>
 
-                <a href="index.html">INICIA SESION</a>
-            </fieldset>
-        </form>
-    </div>
+                    <label for="registroUsuario">Nombre de usuario: </label>
+                    <input type="text" id="idUsuario" name="registroUsuario">
+                    <br>
+                    <label for="correo">Email: </label>
+                    <input type="email" id="idEmail" name="correo"
+                        autocomplete="username">
+                    <br>
+                    <label for="pass">Contraseña: </label>
+                    <input type="password" id="passUsuario" name="pass"
+                        autocomplete="current-password">
+                    <br>
 
-    <footer>MIRKO MACIEL 2024 Copyright</footer>
+                    <div id="contenedorBtn">
+                        <button type="submit" value="registrarse" id
+                            name="registrar">REGISTRARSE</button>
+                    </div>
 
-</body>
+                    <p>¿Tenes una cuenta? <a
+                            href="index.html">INICIA SESION</a></p>
+
+                </fieldset>
+            </form>
+        </div>
+
+        <footer> | MIRKO MACIEL 2024 Copyright |</footer>
+
+    </body>

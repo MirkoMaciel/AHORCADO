@@ -12,6 +12,8 @@ $datoUsuario = $user->bajarInformacionUsuario($_SESSION['nickUsuario']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/tablas.css">
     <title>TABLA DE JUGADORES</title>
 </head>
 
@@ -57,14 +59,8 @@ $datoUsuario = $user->bajarInformacionUsuario($_SESSION['nickUsuario']);
     </div>
 
 
-    <div class="content">
-        <form method="POST" action="http://localhost/AHORCADO/models/logout.php" name="formSe">
-            <button type="submit">CERRAR SESSION</button>
-        </form>
-
-        <form action="http://localhost/AHORCADO/models/resetPartida.php" method="POST" name="btnNuevaPartida">
-            <button type="submit">JUGAR OTRA PARTIDA</button>
-        </form>
+    <div class="" id="contenedorBtnCerrar">
+        <button onclick="window.close()" id="btnCerrar">CERRAR</button>
     </div>
 
 </body>

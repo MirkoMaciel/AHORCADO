@@ -1,4 +1,5 @@
 -- Base de datos Mirko Maciel
+-- TABLAS -- 
 -- TABLA USUARIOS
 
 CREATE TABLE `usuario` (
@@ -11,7 +12,16 @@ CREATE TABLE `usuario` (
 
 
 INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `correo`, `contraseña`) VALUES
-(1, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
+(1, 'mirko', 'mirko0903@hotmail.com', '123456789');
+(2, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
+(3, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
+(4, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
+(5, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
+(6, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
+(7, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
+(8, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
+(9, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
+(10, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
 
 ALTER TABLE usuario ADD CONSTRAINT unique_nombreUsuario UNIQUE (nombreUsuario);
 
@@ -106,17 +116,17 @@ INSERT INTO `palabras` (`palabra`, `idCategoria`) VALUES
 
 --Palabras categoria 3 "Dificultad Alta"
 INSERT INTO  `palabras` (`palabra`, `idCategoria`) VALUES
-('Camaradería' , '3'),
+('Camaraderia' , '3'),
 ('Independencia', '3'),
 ('Aventurero', '3'),
 ('Felicidad', '3'),
 ('Maravillosa', '3'),
-('Tradición', '3'),
+('Tradicion', '3'),
 ('Conquistador', '3'),
 ('Revolución', '3'),
 ('Compromiso', '3'),
 ('Comunidad', '3'),
-('Camarón', '3'),
+('Australopithecus', '3'),
 ('Mestizaje', '3'),
 ('Guerrillero', '3'),
 ('Luchadora', '3'),

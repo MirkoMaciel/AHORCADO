@@ -1,0 +1,57 @@
+/* Estilo general para el contenedor */
+table {
+    width: 50%;                /* Ocupa todo el ancho del contenedor */
+    border-collapse: collapse;  /* Elimina los espacios entre los bordes */
+    margin-top: 20px;           /* Espacio superior */
+    font-size: 1em;             /* Tamaño de fuente de la tabla */
+    text-align: left;           /* Alineación del texto */
+    background-color: #f9f9f9;  /* Fondo general de la tabla */
+    border-radius: 10px;        /* Bordes redondeados */
+    overflow: hidden;           /* Oculta desbordamientos */
+}
+
+/* Estilo para el encabezado */
+table thead {
+    background-color: #2b6b2d;  /* Fondo del encabezado */
+    color: white;               /* Color del texto */
+    text-transform: uppercase;  /* Texto en mayúsculas */
+    text-align: center;
+}
+
+table th {
+    padding: 15px;              /* Espaciado interno */
+    border-bottom: 2px solid #ccc; /* Línea divisoria */
+}
+
+/* Estilo para las filas */
+table tbody tr:nth-child(even) {
+    background-color: #e9e9e9;  /* Color alternado para filas pares */
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #ffffff;  /* Color alternado para filas impares */
+}
+
+/* Estilo para las celdas */
+table td {
+    padding: 10px;              /* Espaciado interno */
+    border-bottom: 1px solid #ccc; /* Línea divisoria */
+}
+
+/* Efecto al pasar el ratón sobre una fila */
+table tbody tr:hover {
+    background-color: #d7f3d7;  /* Color de resaltado */
+    cursor: pointer;            /* Cambia el cursor al pasar sobre las filas */
+}
+
+/* Estilo para las columnas de puntaje y cantidad de partidas */
+table td:nth-child(2), /* Puntaje */
+table td:nth-child(3) { /* Cantidad de Partidas */
+    text-align: right; /* Alinea el texto a la derecha */
+    padding-right: 15px; /* Espaciado adicional a la derecha */
+}
+
+table td:nth-child(1){
+    text-align: center; /* Alinea el texto a la derecha */
+}
+

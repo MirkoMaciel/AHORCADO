@@ -3,31 +3,15 @@
 
 let fecha = new Date("11/25/2025");
 let fechaPost = new Date().getTime() + (5 * 60 * 1000); // 5 minutos en milisegundos
-let btnIniciar = document.getElementById("btnIniciar");
 
 
-//INPUTS
+
+//INPUT
 
 let radios = document.getElementsByName("tiempo");
 //let radioSinTiempo = document.querySelector("input[value='0']");
 let parrafoMinutos = document.querySelector("#contMinutos");
 let parrafoSegundos = document.querySelector("#contSegundos");
-
-
-function obtenerValorSeleccionado() {
-    // Obtener todos los radio buttons con el mismo nombre
-    const radios = document.getElementsByName('opcionTiempo');
-    
-    // Iterar sobre los radio buttons y comprobar cuál está seleccionado
-    let seleccionado;
-    for (let i = 0; i < radios.length; i++) {
-      if (radios[i].checked) {
-        seleccionado = radios[i].value;
-        break;
-      }
-    }
-    console.log(seleccionado);
-}
 
 
 

@@ -37,8 +37,8 @@ $(document).ready(function () {
           if (response.terminado) {
             $("#letra").prop("disabled", true);
             $("#adivinar").prop("disabled", true);
-            $("#btnRendirse").prop("disabled", true);
-            $("#btnNueva").prop("disabled", true);
+            //$("#btnRendirse").prop("disabled", true);
+            //$("#btnNueva").prop("disabled", true);
             abrirPopup();
           }
         } else {

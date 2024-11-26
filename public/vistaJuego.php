@@ -22,7 +22,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
         $nickUsuario = $_SESSION['nickUsuario'];
         $infoJugador = $user->bajarInformacionUsuario($nickUsuario);
         $user->incrementarCantidadPartidas($infoJugador['idUsuario']);
-        
+
         //Realizar consulta BD
         $juego = new JuegoClass();
         $objt = $juego->buscarPalabrasBD($dificultad);
@@ -32,9 +32,9 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
         $palabra = $_SESSION['palabraAleatoria'];
         $_SESSION['palabraOculta'] = str_repeat("*", strlen($palabra));
 
-        echo "No existe la sesión";
+        //echo "No existe la sesión";
     } else {
-        echo "La sesión existe";
+        //echo "La sesión existe";
     }
 } else {
     // Si no hay datos en la sesión, redirigir al formulario de configuración
@@ -43,7 +43,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
     exit();
 }
 
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -55,142 +55,106 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../AHORCADO/assets/js/script.js" defer></script>
     <script src="../../AHORCADO/assets/js/contador.js" defer></script>
-    <style>
-        /* Estilo general del contador */
-        #contador {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            /* Espaciado entre elementos */
-            font-family: Arial, sans-serif;
-            font-size: 24px;
-            text-align: center;
-            margin-top: 20px;
-            /* Espaciado superior */
-        }
+    <link rel="stylesheet" href="../assets/css/style.css">
 
-        /* Estilo para cada bloque de minutos y segundos */
-        #divMinutos,
-        #divSegundos {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Números de minutos y segundos */
-        #contMinutos,
-        #contSegundos {
-            font-size: 48px;
-            font-weight: bold;
-            color: #333;
-            margin: 0;
-            /* Sin espacio adicional */
-        }
-
-        /* Etiquetas (MINUTOS, SEGUNDOS) */
-        #minutos,
-        #segundos {
-            font-size: 16px;
-            color: #777;
-            margin: 0;
-        }
-
-        /* Estilo del separador */
-        #divSeparador1 {
-            font-size: 48px;
-            font-weight: bold;
-            color: #333;
-            align-self: center;
-            /* Centra verticalmente el separador */
-        }
-    </style>
 </head>
 
 <body>
-    <div class="content">
-        <h1>Juego de Palabras</h1>
-        <p>Dificultad seleccionada: <?php
-                                    // Usamos un switch para la dificultad
-                                    switch (htmlspecialchars($_SESSION['dificultad'])) {
-                                        case 1:
-                                            echo "Baja";
-                                            break;
-                                        case 2:
-                                            echo "Media";
-                                            break;
-                                        case 3:
-                                            echo "Alta";
-                                            break;
-                                        default:
-                                            echo "No definida";  // En caso de que no haya una dificultad válida
-                                            break;
-                                    } ?></p>
-        <p>Modo de tiempo: <?php
-                            // Usamos un switch para la dificultad
-                            switch (htmlspecialchars($_SESSION['tiempo'])) {
-                                case 1:
-                                    echo "TIEMPO";
-                                    break;
-                                case 2:
-                                    echo "SIN TIEMPO";
-                                    break;
-                            } ?></p>
 
-        <span id="fecha"></span>
+    <div id="contenedorGrande">
 
-        <div id="contador" style="display: none">
-            <div id="divMinutos" >
-                <p id="contMinutos">00</p>
-                <p id="minutos">MINUTOS</p>
+        <div class="container" id="contenedorInformacion">
+            <h1>ADIVINA LA PALABRA</h1>
+            <p>Dificultad seleccionada: <?php
+                                        // Usamos un switch para la dificultad
+                                        switch (htmlspecialchars($_SESSION['dificultad'])) {
+                                            case 1:
+                                                echo "BAJA";
+                                                break;
+                                            case 2:
+                                                echo "MEDIA";
+                                                break;
+                                            case 3:
+                                                echo "ALTA";
+                                                break;
+                                            default:
+                                                echo "No definida";  // En caso de que no haya una dificultad válida
+                                                break;
+                                        } ?></p>
+            <p>Modo de tiempo: <?php
+                                // Usamos un switch para la dificultad
+                                switch (htmlspecialchars($_SESSION['tiempo'])) {
+                                    case 1:
+                                        echo "TIEMPO";
+                                        break;
+                                    case 2:
+                                        echo "SIN TIEMPO";
+                                        break;
+                                } ?></p>
+
+            <span id="fecha"></span>
+
+            <div class="container" id="contador" style="display: none">
+                <div id="divMinutos">
+                    <p id="contMinutos">00</p>
+                    <p id="minutos">MINUTOS</p>
+                </div>
+                <div id="divSeparador1">:</div>
+                <div id="divSegundos">
+                    <p id="contSegundos">00</p>
+                    <p id="segundos">SEGUNDOS</p>
+                </div>
             </div>
-            <div id="divSeparador1">:</div>
-            <div id="divSegundos">
-                <p id="contSegundos">00</p>
-                <p id="segundos">SEGUNDOS</p>
+
+            <div class="" id="contenedorPalabra">
+                <p id="palabra">Palabra para descubrir:
+                    <span class="span" id="txtPalabra"> <?= htmlspecialchars($_SESSION['palabraOculta']) ?></span>
+                </p>
             </div>
         </div>
 
-        <p id="palabra">Palabra para descubrir: <?= htmlspecialchars($_SESSION['palabraOculta']) ?></p>
+        <div class="container" id="contenedorInteracción">
 
+            <label for="letra">Introduce una letra:</label>
+            <input type="text" name="letra" id="letra" maxlength="1" required>
+            <div id="contenedorBtn">
+                <button id="adivinar">Adivinar</button>
+            </div>
+            <div class="contenedorMsj" id="mensaje"></div>
+            <div class="contenedorMsj" id="aciertos">Aciertos en la adivinanza:<span class="span"><?php echo $_SESSION['aciertos']; ?></span></div>
+            <div class="contenedorMsj" id="pistas">Pistas descubiertas:<span class="span"><?php echo $_SESSION['pistas'] ?></span></div>
+            <div class="contenedorMsj" id="letrasProbadas">Letras probadas :<span class="span"><?php $letrasIntentadas = $_SESSION['letrasIntentadas'];
+                                                                                                //var_dump($letrasIntentadas);
+                                                                                                foreach ($letrasIntentadas as $letra) {
+                                                                                                    if (empty($letra)) {
+                                                                                                        echo "No ingresaste ninguna letra";
+                                                                                                    } else {
+                                                                                                        echo $letra . "-";
+                                                                                                    }
+                                                                                                } ?></span>
+
+            </div>
+
+        </div>
     </div>
 
-    <div class="content">
-
-        <label for="letra">Introduce una letra:</label>
-        <input type="text" name="letra" id="letra" maxlength="1" required>
-        <button id="adivinar">Adivinar</button>
-
-        <div id="mensaje"></div>
-        <div id="aciertos">Aciertos en la adivinanza:<?php echo $_SESSION['aciertos']; ?></div>
-        <div id="pistas">Pistas descubiertas:<?php echo $_SESSION['pistas'] ?></div>
-        <div id="letrasProbadas">Letras probadas :<?php $letrasIntentadas = $_SESSION['letrasIntentadas']; 
-        //var_dump($letrasIntentadas);
-        foreach ($letrasIntentadas as $letra) {
-            if (empty($letra)){
-                echo "No ingresaste ninguna letra";
-            }else {
-                echo $letra."-";
-            }
-        }?>
-        
-    </div>
-
-    </div>
-
-    <div class="content">
+    <div class="container" style="display : none">
         <p>Palabra a adivinar: <?= htmlspecialchars($_SESSION['palabraAleatoria']) ?></p>
     </div>
 
-    <div class="content">
-        <button id="btnRendirse" name="btnR">ABANDONAR JUEGO</button>
-    </div>
-    <div class="content">
-        <button id="btnNueva" name="btnFin">RENDIRSE</button>
-    </div>
+    <div id="contenedorBtns">
 
-    <div>
-        <button id="btnPartidaNueva" name="btnPartidaNueva" hidden>NUEVA PARTIDA</button>
+        <div class="contenedorBtn">
+            <button id="btnRendirse" name="btnR">ABANDONAR JUEGO</button>
+        </div>
+        <div class="contenedorBtn">
+            <button id="btnNueva" name="btnFin">RENDIRSE</button>
+        </div>
+
+        <div class="contenedorBtn">
+            <button id="btnPartidaNueva" name="btnPartidaNueva" hidden>NUEVA PARTIDA</button>
+        </div>
+
     </div>
 
     <dialog id="mensajeFin">
@@ -211,7 +175,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
         </form>
     </dialog>
 
-    
+
 
 
 

@@ -1,38 +1,47 @@
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../assets/js/script.js"></script>
-    <title>INICIO SESION</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../assets/js/script.js"></script>
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <title>INICIO SESION</title>
+    </head>
 
-<body>
-    
-    <div>BIENVENIO AL AHORCADO</div>
+    <body>
 
-    <div>
-        <form action="../models/procesarInicioSesion.php" method="POST" id="formInicio">
-            <fieldset>
-                <legend>INICIO SESION</legend>
+        <h1>BIENVENIDO AL AHORCADO</h1>
 
-                <input type="text" id="idUsuario" name="nombreUsuario" autocomplete="username" >
-                <input type="password" id="passUsuario" name="passUsuario" autocomplete="current-password">
+        <div id="contenedorImg"><img src="../assets/img/logo.png" alt="logounsjb.jhpg"></div>
 
-                <button type="submit">ENVIAR</button>
+        <div class="container">
+            <form action="../models/procesarInicioSesion.php" method="POST"
+                id="formInicio">
+                <fieldset>
+                    <legend>INICIO SESION</legend>
 
-                <p>¿No tienes una cuenta? <a href="registro.html">REGISTRATE</a></p>
-            </fieldset>
-        </form>
-    </div>
+                    <input type="text" id="idUsuario" name="nombreUsuario"
+                        autocomplete="username" placeholder="Nombre de usuario"
+                        required>
+                    <input type="password" id="passUsuario" name="passUsuario"
+                        autocomplete="current-password" placeholder="Contraseña"
+                        required>
 
-    <div id="resultado"></div>
+                    <div id="contenedorBtn">
+                    <button type="submit">INGRESAR</button>
+                    </div>
 
-    <footer>MIRKO MACIEL 2024 Copyright</footer>
-    
+                    <p>¿No tienes una cuenta? <a
+                            href="registro.html">REGISTRATE</a></p>
+                </fieldset>
+            </form>
+        </div>
+
+        <footer>
+           | MIRKO MACIEL 2024 Copyright | 
+        </footer>
+
     </body>
-
-
 
 </html>
