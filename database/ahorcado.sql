@@ -11,17 +11,18 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `correo`, `contraseña`) VALUES
-(1, 'mirko', 'mirko0903@hotmail.com', '123456789');
-(2, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
-(3, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
-(4, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
-(5, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
-(6, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
-(7, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
-(8, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
-(9, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
-(10, 'mirkoMirko', 'mirko0903@hotmail.com', '123456789');
+INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `correo`, `contraseña`) 
+VALUES
+(1, 'mirko', 'mirko0903@hotmail.com', SHA1('12345')),
+(2, 'claudio', 'claudioVillegas@hotmail.com', SHA1('123456')),
+(3, 'Santino', 'santino@hotmail.com', SHA1('1234567')),
+(4, 'fanaticodelosAviones', 'fanaticoaviones@hotmail.com', SHA1('12345678')),
+(5, 'jorgelina', 'jorgelina@hotmail.com', SHA1('12345678')),
+(6, 'AustaCIO', 'austacio@hotmail.com', SHA1('0000')),
+(7, 'pipo', 'pipo@hotmail.com', SHA1('1111')),
+(8, 'antoniOOOO', 'antonio@hotmail.com', SHA1('2222')),
+(9, 'RAFAEL', 'rafael@hotmail.com', SHA1('3333')),
+(10, 'krugerClaudia', 'claudiaKruger@hotmail.com', SHA1('4444'));
 
 ALTER TABLE usuario ADD CONSTRAINT unique_nombreUsuario UNIQUE (nombreUsuario);
 
@@ -37,7 +38,16 @@ CREATE TABLE `puntajes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;    
 
 INSERT INTO  `puntajes` (`idUsuario`,`puntaje`,`cantidadPartidas`) VALUES
-(1, 5000, 23);
+(1, 5000, 1000),
+(2, 120, 30),
+(3, 100, 17),
+(4, 98, 17),
+(5, 76, 12),
+(6, 76, 15),
+(7, 54, 8),
+(8, 25, 8),
+(9, 3, 8),
+(10, 0, 0);
 
 CREATE TABLE `palabras` (
     `idPalabra` INT(11) NOT NULL AUTO_INCREMENT,
@@ -59,7 +69,7 @@ INSERT INTO `categoria` (`idCategoria`,`dificultad`) VALUES (1, 'Baja');
 INSERT INTO `categoria` (`idCategoria`,`dificultad`) VALUES (2, 'Media');
 INSERT INTO `categoria` (`idCategoria`,`dificultad`) VALUES (3, 'Alta');
 
---Palabras categoria 1 "Dificultad BAJA"
+-- Palabras categoria 1 "Dificultad BAJA"
 INSERT INTO `palabras` (`palabra`,`idCategoria`) VALUES
 ('Casa' , '1'),
 ('Gato' , '1'),
@@ -114,7 +124,7 @@ INSERT INTO `palabras` (`palabra`, `idCategoria`) VALUES
 ('Plenitud', '2'),
 ('Montaña', '2');
 
---Palabras categoria 3 "Dificultad Alta"
+-- Palabras categoria 3 "Dificultad Alta"
 INSERT INTO  `palabras` (`palabra`, `idCategoria`) VALUES
 ('Camaraderia' , '3'),
 ('Independencia', '3'),
@@ -140,4 +150,4 @@ INSERT INTO  `palabras` (`palabra`, `idCategoria`) VALUES
 ('Recuerdo', '3'),
 ('Reciclaje', '3'),
 ('Camarismo', '3'),
-('Confianza', '3')
+('Confianza', '3');

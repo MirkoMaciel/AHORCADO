@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         //Encripto la contraseña
         $passE = sha1($pass);
 
-        $usuario = $user->buscarUsuarioRegistrado($nombre, $passE);
+        $usuario = $user->buscarUsuarioRegistrado2($nombre, $passE);
         
         if ($usuario){
             //Si el usuario es correcto bajo toda su información

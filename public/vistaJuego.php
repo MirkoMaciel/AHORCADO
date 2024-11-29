@@ -138,7 +138,8 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
         </div>
     </div>
 
-    <div class="container" style="display : none">
+    <!--PALABRA A DESCUBRIR-->
+    <div class="container" style="">
         <p>Palabra a adivinar: <?= htmlspecialchars($_SESSION['palabraAleatoria']) ?></p>
     </div>
 
@@ -152,11 +153,15 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
         </div>
 
         <div class="contenedorBtn">
-            <button id="btnPartidaNueva" name="btnPartidaNueva" hidden>NUEVA PARTIDA</button>
+        <form action="http://localhost/AHORCADO/models/resetPartida.php" method="POST" name="btnNuevaPartida">
+            <button id="btnPartidaNueva" name="btnPartidaNueva" type="submit" style="display: none;">NUEVA PARTIDA</button>
+            </form>
         </div>
 
     </div>
 
+
+    <!--MENSAJES VENTANA POP UP-->
     <dialog id="mensajeFin">
         <h2>¿Estás seguro de que deseas ABANDONAR EL JUEGO?</h2>
         <p>Las consecuencias son: Perder la partida y se cerrará la sesión</p>

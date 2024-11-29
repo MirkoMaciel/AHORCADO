@@ -25,6 +25,29 @@ class BaseDeDatos
         }
     }
 
+    // Método para ejecutar consultas preparadas
+public function ejecutarConsultaPreparada($query, $paramTypes, $paramValues)
+{
+
+    $stmt = $this->conexion->prepare($query);
+
+    if (!$stmt) {
+        die("Error en la preparación de la consulta: " . $this->conexion->error);
+    }
+
+    // Asociar los parámetros a la consulta
+    $stmt->bind_param($paramTypes, ...$paramValues);
+
+    // Ejecutar la consulta
+    if (!$stmt->execute()) {
+        die("Error en la ejecución de la consulta: " . $stmt->error);
+    }
+
+    // Retornar el resultado
+    return $stmt->get_result();
+}
+
+
     public function ejecutarConsulta($consulta)
     {
         $resultado = $this->conexion->query($consulta);

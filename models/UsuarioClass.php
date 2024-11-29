@@ -49,7 +49,6 @@ class UsuarioClass
         return $result;
     }
 
-
     public function registrarJugador($nombreUsuario, $correo, $contraseña) //Registro al usuario en la bd
     {
         $bd = new BaseDeDatos('localhost', 'root', '', 'ahorcado');
@@ -76,8 +75,30 @@ class UsuarioClass
         $query = "SELECT * FROM usuario u WHERE u.nombreUsuario = '$nombreUsuario' AND u.contraseña = '$pass'";
         //Resultado
         $result = $bd->obtenerResultado($bd->ejecutarConsulta($query));
-
         return $result;
+    }
+
+    //OTRA CONSULTA BUSQUEDA USUARIO
+
+    public function buscarUsuarioRegistrado2($nombreUsuario, $pass)
+    {
+        // Conexión a la base de datos
+        $bd = new BaseDeDatos('localhost', 'root', '', 'ahorcado');
+    
+        // Consulta SQL sensible a mayúsculas
+        $query = "SELECT * FROM usuario WHERE BINARY nombreUsuario = ? AND contraseña = ?";
+    
+        // Tipos de los parámetros ("ss" para dos cadenas)
+        $parametros = "ss"; 
+    
+        // Valores de los parámetros
+        $paramValor = [$nombreUsuario, $pass];
+    
+        // Ejecutar la consulta preparada
+        $result = $bd->ejecutarConsultaPreparada($query, $parametros, $paramValor);
+    
+        // Devolver el usuario encontrado o NULL si no existe
+        return $bd->obtenerResultado($result);
     }
 
     public function getPuntuacionUsuario ($idUsuario){ //Bajar la información del puntaje  del usuario

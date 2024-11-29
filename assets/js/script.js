@@ -37,8 +37,12 @@ $(document).ready(function () {
           if (response.terminado) {
             $("#letra").prop("disabled", true);
             $("#adivinar").prop("disabled", true);
-            //$("#btnRendirse").prop("disabled", true);
-            //$("#btnNueva").prop("disabled", true);
+            $("#adivinar").css("background-color", "grey"); // Cambia el color del texto a gris// Cambia el color del texto a gris
+            $("#btnNueva").prop("disabled", true);
+            $("#btnNueva").css("background-color", "grey"); // Cambia el color del texto a gris
+
+            // habilitar el botón
+            $("#btnPartidaNueva").css("display", "block");
             abrirPopup();
           }
         } else {

@@ -64,6 +64,7 @@ $infoJugador = $user->bajarInformacionUsuario($nickUsuario);
             </form>
             <!-- Botón para salir y volver al índice -->
             <button class="exit-btn" id="btnCerrar" onclick="window.location.href='http://localhost/AHORCADO/models/logout.php';">Cerrar sesión</button>
+
         </div>
     </div>
 
