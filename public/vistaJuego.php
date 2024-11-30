@@ -53,6 +53,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
     <meta charset="UTF-8">
     <title>Vista del Juego</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
     <script src="../../AHORCADO/assets/js/script.js" defer></script>
     <script src="../../AHORCADO/assets/js/contador.js" defer></script>
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -87,7 +88,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
                                     case 1:
                                         echo "TIEMPO";
                                         break;
-                                    case 2:
+                                    case 0:
                                         echo "SIN TIEMPO";
                                         break;
                                 } ?></p>
