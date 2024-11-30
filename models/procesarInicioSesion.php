@@ -40,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_SESSION['puntaje'] = $puntajeUsuario['puntaje'];
             $_SESSION['cantidadPartidas'] =  $puntajeUsuario['cantidadPartidas'];
             
-            echo "<script>alert('El usuario existe');window.location='../public/vistaConfigJuego.php';</script>";
+            echo "<script>alert('Usuario logeado!');window.location='../public/vistaConfigJuego.php';</script>";
         }else {
 
-            echo "<script>alert('El usuario NO existe'); window.location='../public/index.html';</script>";
+            echo "<script>alert('El usuario no es valido compruebe su usuario/contraseña'); window.location='../public/index.html';</script>";
 
         }
 

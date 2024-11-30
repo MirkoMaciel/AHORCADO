@@ -94,16 +94,8 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
 
             <span id="fecha"></span>
 
-            <div class="container" id="contador" style="display: none">
-                <div id="divMinutos">
-                    <p id="contMinutos">00</p>
-                    <p id="minutos">MINUTOS</p>
-                </div>
-                <div id="divSeparador1">:</div>
-                <div id="divSegundos">
-                    <p id="contSegundos">00</p>
-                    <p id="segundos">SEGUNDOS</p>
-                </div>
+            <div id="contenedorContador" style="display: <?php echo $_SESSION['tiempo'] == '1' ? 'block' : 'none'; ?>;">
+                <p id="parrafoTiempo">Tiempo restante: 02:00</p>
             </div>
 
             <div class="" id="contenedorPalabra">
@@ -139,7 +131,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
     </div>
 
     <!--PALABRA A DESCUBRIR-->
-    <div class="container" style="">
+    <div class="container" style="display : none">
         <p>Palabra a adivinar: <?= htmlspecialchars($_SESSION['palabraAleatoria']) ?></p>
     </div>
 
