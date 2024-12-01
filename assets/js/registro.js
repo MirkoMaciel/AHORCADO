@@ -1,7 +1,7 @@
 console.log("El archivo se lee correctamente");
 
 
-//Petición AJAX que trae los datos de las empresas según los filtros ingresados.
+//Petición AJAX que trae los datos del usuario.
 $(document).ready(function () {
   $("#registro").on("click", function () {
     // Obtener los valores de los campos del formulario

@@ -5,7 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>REGISTRO</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="../assets/js/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" href="../assets/css/style.css">
         <script src="../assets/js/registro.js" defer></script>
@@ -13,10 +14,14 @@
 
     <body>
         <!--VISTA DE REGISTRO DE USUARIO-->
-        <h1>REGISTRESE CON NOSOTROS</h1>
+        <section id="seccionTitulo">
+            <h1>REGISTRESE CON NOSOTROS</h1>
+        </section>
 
-        <div id="contenedorImg"><img src="../assets/img/logo.png"
-                alt="logounsjb.jhpg"></div>
+        <section id="seccionImagenes">
+            <div id="contenedorImg"><img src="../assets/img/logo.png"
+                    alt="logounsjb.jhpg"></div>
+        </section>
 
         <div class="container">
             <form action="../models/procesarUsuario.php" method="POST">
@@ -24,15 +29,15 @@
                     <legend>REGISTRO</legend>
 
                     <label for="registroUsuario">Nombre de usuario: </label>
-                    <input type="text" id="idUsuario" name="registroUsuario">
+                    <input type="text" id="idUsuario" name="registroUsuario" required>
                     <br>
                     <label for="correo">Email: </label>
                     <input type="email" id="idEmail" name="correo"
-                        autocomplete="username">
+                        autocomplete="username" required>
                     <br>
                     <label for="pass">Contraseña: </label>
                     <input type="password" id="passUsuario" name="pass"
-                        autocomplete="current-password">
+                        autocomplete="current-password" required>
                     <br>
 
                     <div id="contenedorBtn">

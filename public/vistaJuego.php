@@ -1,12 +1,13 @@
 <?php
+/* inicio de sessión */
 session_start();
 
+/* Instancia de clases */
 require_once '../models/JuegoClass.php';
 require_once "../models/UsuarioClass.php";
 
-
 // Verificar que los datos estén en la sesión
-if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
+if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) { /*Dificultad = Baja - Media - Alta  | Tiempo : modo de juego*/
 
     $dificultad = $_SESSION['dificultad'];
     $modoTiempo = $_SESSION['tiempo'];
@@ -18,23 +19,20 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
     //Si no existe la  sessión inicio el juego
     if (!isset($_SESSION['palabraAleatoria'])) {
 
+        /* Declaración de variables */
         $user = new UsuarioClass();
-        $nickUsuario = $_SESSION['nickUsuario'];
-        $infoJugador = $user->bajarInformacionUsuario($nickUsuario);
-        $user->incrementarCantidadPartidas($infoJugador['idUsuario']);
-
-        //Realizar consulta BD
         $juego = new JuegoClass();
+        $nickUsuario = $_SESSION['nickUsuario'];
+        $infoJugador = $user->bajarInformacionUsuario($nickUsuario); //Bajar la información del usuario
+        $user->incrementarCantidadPartidas($infoJugador['idUsuario']);  //Incrementar en uno la cantidad de partidas
         $objt = $juego->buscarPalabrasBD($dificultad);
 
         //var_dump ($objt);
-        $_SESSION['palabraAleatoria'] = $juego->seleccionarPalabra($objt);
+        $_SESSION['palabraAleatoria'] = $juego->seleccionarPalabra($objt); //Guardo la palabra seleccionada aleatoriamente dentro de la sessión
         $palabra = $_SESSION['palabraAleatoria'];
-        $_SESSION['palabraOculta'] = str_repeat("*", strlen($palabra));
+        $_SESSION['palabraOculta'] = str_repeat("*", strlen($palabra)); //A la variable palabra se le calcula la longitud , luego se genera una cadena de "*" de la misma longitud
 
         //echo "No existe la sesión";
-    } else {
-        //echo "La sesión existe";
     }
 } else {
     // Si no hay datos en la sesión, redirigir al formulario de configuración
@@ -42,8 +40,6 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
     session_destroy();
     exit();
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -65,6 +61,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
     <div id="contenedorGrande">
 
         <div class="container" id="contenedorInformacion">
+            <!--    INFORMACIÓN DE LA CONFIGURACIÓN DEL JUEGO   -->
             <h1>ADIVINA LA PALABRA</h1>
             <p>Dificultad seleccionada: <?php
                                         // Usamos un switch para la dificultad
@@ -108,6 +105,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
 
         <div class="container" id="contenedorInteracción">
 
+            <!-- FORMULARIO DE INTERACCIÓN DEL USUARIO  -->
             <label for="letra">Introduce una letra:</label>
             <input type="text" name="letra" id="letra" maxlength="1" required>
             <div id="contenedorBtn">
@@ -137,7 +135,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
     </div>
 
     <div id="contenedorBtns">
-
+        <!-- CONTENEDOR DE BOTONES -->
         <div class="contenedorBtn">
             <button id="btnRendirse" name="btnR">ABANDONAR JUEGO</button>
         </div>
@@ -146,8 +144,8 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
         </div>
 
         <div class="contenedorBtn">
-        <form action="http://localhost/AHORCADO/models/resetPartida.php" method="POST" name="btnNuevaPartida">
-            <button id="btnPartidaNueva" name="btnPartidaNueva" type="submit" style="display: none;">NUEVA PARTIDA</button>
+            <form action="http://localhost/AHORCADO/models/resetPartida.php" method="POST" name="btnNuevaPartida">
+                <button id="btnPartidaNueva" name="btnPartidaNueva" type="submit" style="display: none;">NUEVA PARTIDA</button>
             </form>
         </div>
 
@@ -172,7 +170,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) {
             <button type="button" id="btnCancelar2">Cancelar</button>
         </form>
     </dialog>
-
+    <!--     ////////////////////////////       -->
 
 
 

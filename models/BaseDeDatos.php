@@ -67,11 +67,11 @@ public function ejecutarConsultaPreparada($query, $paramTypes, $paramValues)
         return null; // Sin resultados
     }
 
-    public function obtenerResultados($resultado)
+    public function obtenerResultados($resultado) 
     {
-        $objetos = [];
+        $objetos = []; //Define una variable como un arreglo de objetos
 
-        while ($objeto = $resultado->fetch_object()) {
+        while ($objeto = $resultado->fetch_object()) { //Multiples registros
             $objetos[] = $objeto;
         }
 

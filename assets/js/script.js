@@ -12,14 +12,14 @@ $(document).ready(function () {
 
     // Enviar la letra al servidor
     $.ajax({
-      url: "../../AHORCADO/models/juego.php",
+      url: "../../AHORCADO/models/juego.php", //Archivo que procesa la información
       method: "POST",
-      data: { letra: letra },
-      dataType: "json",
-      success: function (response) {
-        if (response.success) {
+      data: { letra: letra }, //Dato enviado
+      dataType: "json", //Tipo de dato FORMATO JSON
+      success: function (response) {  //rESPUESTA del servidor
+        if (response.success) { //Si la respuesta es valida
           // Actualiza los elementos del juego
-          $("#palabra").text("Palabra para descubrir: " + response.palabra);
+          $("#palabra").text("Palabra para descubrir: " + response.palabra); 
           $("#aciertos").text(
             "Aciertos en la adivinanza: " + response.aciertos
           );
@@ -28,13 +28,14 @@ $(document).ready(function () {
             "Letras probadas: " + response.letrasIntentadas
           );
           $("#mensaje").text(response.mensaje);
-          // Después de 3 segundos, ocultar el mensaje y continuar el juego
+          // Después de 3 segundos, ocultar el mensaje y continuar el juego (FUNCION NO IMPLEMENTADA)
           /*
           setTimeout(function () {
             $("#mensaje").text(""); // Ocultar mensaje
           }, 2000); // 2000 ms = 2 segundos*/
+
           // Si el juego termina, deshabilitar entrada
-          if (response.terminado) {
+          if (response.terminado) { //Si terminado = true
             $("#letra").prop("disabled", true);
             $("#adivinar").prop("disabled", true);
             $("#adivinar").css("background-color", "grey"); // Cambia el color del texto a gris// Cambia el color del texto a gris
@@ -49,7 +50,7 @@ $(document).ready(function () {
           alert(response.error);
         }
       },
-      error: function (jqXHR, textStatus, errorThrown) {
+      error: function (jqXHR, textStatus, errorThrown) { //Definición de errores 
         console.error("Error al procesar la solicitud:");
         console.error("Estado:", textStatus);
         console.error("Error:", errorThrown);
@@ -64,7 +65,7 @@ $(document).ready(function () {
   });
 });
 
-function abrirPopup() {
+function abrirPopup() { //Funcion para desplegar la ventana POP UP
   $.ajax({
     url: "../../../AHORCADO/public/vistaTablaJugadores.php", // Ruta al archivo HTML
     type: "GET", // Método HTTP
@@ -73,7 +74,7 @@ function abrirPopup() {
       const width = 1200;
       const height = 980;
       // Calcular posición para centrar
-      const left = screen.width / 2 - width / 2;
+      const left = screen.width / 2 - width / 2; 
       const top = screen.height / 2 - height / 2;
       // Abrir ventana popup
       const popupWindow = window.open(

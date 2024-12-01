@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -10,9 +9,14 @@
 
     <body>
         <!--VISTA PRINCIPAL DE LOGEO-->
-        <h1>BIENVENIDO AL AHORCADO</h1>
+        <section id="seccionTitulo">
+            <h1>BIENVENIDO AL AHORCADO</h1>
+        </section>
 
-        <div id="contenedorImg"><img src="../assets/img/logo.png" alt="logounsjb.jhpg"></div>
+        <section id="seccionImagenes">
+            <div id="contenedorImg"><img src="../assets/img/logo.png"
+                    alt="logounsjb.jhpg"></div>
+        </section>
 
         <div class="container">
             <form action="../models/procesarInicioSesion.php" method="POST"
@@ -28,7 +32,7 @@
                         required>
 
                     <div id="contenedorBtn">
-                    <button type="submit">INGRESAR</button>
+                        <button type="submit">INGRESAR</button>
                     </div>
 
                     <p>¿No tienes una cuenta? <a
@@ -38,7 +42,7 @@
         </div>
 
         <footer>
-           | MIRKO MACIEL 2024 Copyright | 
+            | MIRKO MACIEL 2024 Copyright |
         </footer>
 
     </body>

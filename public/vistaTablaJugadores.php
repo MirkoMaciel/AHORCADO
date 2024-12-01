@@ -1,5 +1,8 @@
-<?php 
+<?php
+/* inicio de sessión */
 session_start();
+
+/*  Declaración de variables e instanciación de clases  */
 require_once "../models/UsuarioClass.php";
 $user = new UsuarioClass();
 $datos = $user->bajarTopJugadores(); //var_dump($datos)
@@ -18,7 +21,7 @@ $datoUsuario = $user->bajarInformacionUsuario($_SESSION['nickUsuario']);
 </head>
 
 <body>
-
+    <!-- TABLA DE JUGADORES -->
     <h1>Tabla de Jugadores</h1>
     <table>
         <thead>
@@ -29,6 +32,7 @@ $datoUsuario = $user->bajarInformacionUsuario($_SESSION['nickUsuario']);
             </tr>
         </thead>
         <tbody>
+            <!--    CUERPO DE LA TABLA  -->
             <?php if (!empty($datos) && is_array($datos)): ?>
                 <?php foreach ($datos as $jugador): ?>
                     <tr>
@@ -46,15 +50,16 @@ $datoUsuario = $user->bajarInformacionUsuario($_SESSION['nickUsuario']);
     </table>
 
     <div id="contentInfo" class="container">
+            <!-- INFORMACIÓN DEL USUARIO    -->
         <?php
-            if (!empty($datoUsuario)){  
-                echo "<h2>TUS ESTADISTICAS</h2>";
+        if (!empty($datoUsuario)) {
+            echo "<h2>TUS ESTADISTICAS</h2>";
 
-                echo "<p>Hola, " . strtoupper($datoUsuario['nombreUsuario']) . " ahora en base a tu resultado estas son tus estadisticas ahora: </p>";
-                echo "<p>Puntaje partida: ".$_SESSION['aciertos']."</p>";
-                echo "<p>Puntaje: " . $datoUsuario['puntaje'] . "</p>";
-                echo "<p>Cantidad de Partidas: " . $datoUsuario['cantidadPartidas'] . "</p>";
-            }
+            echo "<p>Hola, " . strtoupper($datoUsuario['nombreUsuario']) . " ahora en base a tu resultado estas son tus estadisticas ahora: </p>";
+            echo "<p>Puntaje partida: " . $_SESSION['aciertos'] . "</p>";
+            echo "<p>Puntaje: " . $datoUsuario['puntaje'] . "</p>";
+            echo "<p>Cantidad de Partidas: " . $datoUsuario['cantidadPartidas'] . "</p>";
+        }
         ?>
     </div>
 

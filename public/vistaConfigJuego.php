@@ -1,9 +1,13 @@
-<?php session_start();
+<?php
+//Inicio de sessión
+session_start();
 
+/*  Declaración de variables e instancia de clases  */
 require_once "../models/UsuarioClass.php";
 $user = new UsuarioClass();
 $nickUsuario = $_SESSION['nickUsuario'];
 $infoJugador = $user->bajarInformacionUsuario($nickUsuario);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,6 +29,7 @@ $infoJugador = $user->bajarInformacionUsuario($nickUsuario);
     <div id="contenedorGrande">
 
         <div id="contentInfo" class="container">
+            <!--    CONTENEDOR DE INFORMACIÓN USUARIO LOGEADO   -->
             <?php
             if (!empty($infoJugador)) {
                 echo "<h2>INFORMACIÓN DEL USUARIO</h2>";
@@ -44,6 +49,7 @@ $infoJugador = $user->bajarInformacionUsuario($nickUsuario);
 
 
         <div class="container" id="contentConfig">
+            <!--    FORMULARIO DE CONFIGURACIÓN     -->
             <h1>Configuración de partida</h1>
 
             <form id="gameForm" method="POST" action="../models/procesarConfig.php">
