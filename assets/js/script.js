@@ -121,3 +121,17 @@ btnNueva.addEventListener("click", () => {
   mensajeNueva.show();
   //window.location.href = "http://localhost/AHORCADO/public/vistaConfigJuego.php";
 });
+
+
+//FUNCION QUE IMPIDE QUE SE INGRESE CUALQUIER OTRO CARACTER QUE NO SEA UNA LETRA ()
+const input = document.getElementById("letra");
+
+//impide que el usuario intente escribir números o caracteres no permitidos.
+
+input.addEventListener("keypress", function (e) {
+    const regex = /^[a-zA-Z]+$/; // Solo letras
+    const key = String.fromCharCode(e.keyCode || e.which);
+    if (!regex.test(key)) {
+        e.preventDefault(); // Bloquea el ingreso del carácter
+    }
+});

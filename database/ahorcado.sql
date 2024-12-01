@@ -133,7 +133,7 @@ INSERT INTO  `palabras` (`palabra`, `idCategoria`) VALUES
 ('Maravillosa', '3'),
 ('Tradicion', '3'),
 ('Conquistador', '3'),
-('Revolución', '3'),
+('Revolucion', '3'),
 ('Compromiso', '3'),
 ('Comunidad', '3'),
 ('Australopithecus', '3'),

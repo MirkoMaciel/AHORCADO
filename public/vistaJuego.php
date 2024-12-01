@@ -107,7 +107,7 @@ if (isset($_SESSION['dificultad'], $_SESSION['tiempo'])) { /*Dificultad = Baja -
 
             <!-- FORMULARIO DE INTERACCIÓN DEL USUARIO  -->
             <label for="letra">Introduce una letra:</label>
-            <input type="text" name="letra" id="letra" maxlength="1" required>
+            <input type="text" name="letra" id="letra" maxlength="1" pattern="[A-Za-z]+" required>
             <div id="contenedorBtn">
                 <button id="adivinar">Adivinar</button>
             </div>
